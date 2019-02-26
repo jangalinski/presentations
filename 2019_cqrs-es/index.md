@@ -33,6 +33,9 @@ Was ist das? Warum brauch ich das?
 
 # CQRS/ES ?
 
+* Trennung von lesenden und schreibenden Zugriffen
+* Events als einzige Persistenz des Systems
+
 --
 
 ## Command
@@ -103,16 +106,34 @@ Sourcing
 
 ---
 
+# CQRS/ES !
+
+--
+
+<p class="stretch"><img src="https://docs.wolkenkit.io/data-flow/data-flow.svg"></p>
+
+---
+
 # Event Sourcing
 
 > Event Sourcing ensures that all changes to application state are stored as a sequence of events.
 >> Martin Fowler
 
----
+--
 
-#### Trennung von Schreib- und Lese-Modell
+### Append-only Store
 
-<p class="stretch"><img src="https://docs.wolkenkit.io/data-flow/data-flow.svg"></p>
+* optmiert für schnelles Schreiben
+* lock-free
+* einfach verteilbar
+
+--
+
+### Event Sourcing
+
+* Verwenden historischer Events für neue Anforderungen
+* Debug/Fehlerananylse durch Replay von/bis
+* Audit Log for free
 
 ---
 
