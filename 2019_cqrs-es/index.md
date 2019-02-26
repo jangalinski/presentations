@@ -2,6 +2,8 @@
 
 # CQRS/ES
 
+Einhorn Lunch - Jan Galinski 27.02.19
+
 ---
 
 # **C**ommand
