@@ -6,6 +6,11 @@
 
 ---
 
+## Code is easy
+## State is <red>hard</red>
+
+---
+
 # **C**ommand
 Query
 Responsipibily
