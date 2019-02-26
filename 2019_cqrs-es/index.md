@@ -1,10 +1,20 @@
-<!-- .slide: data-background="#000000" -->
 
 # CQRS/ES
 
 Was ist das? Warum brauch ich das?
 
 <small>Einhorn Lunch<br/>Jan Galinski<br/>27.02.19</small>
+
+--
+
+## Hypothese
+
+> CQRS mit Eventsourcing ist ein fantastisches Architekturmuster 
+> zum Bau nachrichtenbasierter, lose gekoppelter (Microservice) Systeme
+
+---
+
+
 
 ---
 
