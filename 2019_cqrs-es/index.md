@@ -4,7 +4,7 @@
 
 ---
 
-Command
+# **C**ommand
 Query
 Responsipibily
 Segregation
