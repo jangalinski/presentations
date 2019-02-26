@@ -1,3 +1,5 @@
+<!-- .slide: data-background="#000000" -->
+
 # CQRS/ES
 
 ---
