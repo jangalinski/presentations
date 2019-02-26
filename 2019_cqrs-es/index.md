@@ -2,9 +2,7 @@
 
 # CQRS/ES
 
-<small>Einhorn Lunch
-Jan Galinski 
-27.02.19</small>
+<small>Einhorn Lunch<br/>Jan Galinski<br/>27.02.19</small>
 
 ---
 
