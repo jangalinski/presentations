@@ -1,12 +1,11 @@
 ---
 title: CQRS/ES Einhorn Lunch
-separator: ---
-verticalSeparator: --
+separator: --->
+verticalSeparator: --v
 theme: white
 revealOptions:
     transition: 'fade'
 ---
-
 
 # CQRS/ES
 
@@ -14,175 +13,187 @@ Was ist das? Warum brauch ich das?
 
 <small>Einhorn Lunch<br/>Jan Galinski<br/>27.02.19</small>
 
---
+--v
 
-## Hypothese (1)
-
-> Code is easy
-<br/>
-> State is <red>hard</red>
-
---
-
-## Hypothese (2)
+## Hypothese
 
 > CQRS mit Eventsourcing ist ein fantastisches Architekturmuster 
 > zum Bau nachrichtenbasierter, lose gekoppelter (Microservice) Systeme
 
----
+--->
 
-# CQRS/ES ?
+# Systems have State
 
-* Trennung von lesenden und schreibenden Zugriffen
-* Events als einzige Persistenz des Systems
+--v
 
---
+## State is represented by Domain Objects
+
+- aka. Entities 
+- aka. Aggregate (DDD)
+
+--v
+
+### State can be modified
+<h1 class="fragment">&rarr; COMMAND</h1>
+
+--v
+
+### State can be retrieved
+
+<h1 class="fragment">&rarr; QUERY</h1>
+
+--v
+
+## Code is easy
+<br/>
+## State is hard
+
+--->
+
+# CRUD
+
+<p class="fragment">Create - Update - Delete</p>
+
+--v
+
+### Request/Response
+
+![](img/crud1.png)
+
+synchronous
+
+--v
+
+### Scaling up
+
+![](img/crud2.png)
+
+synchronous
+
+--v
+
+### Message Driven
+
+![](img/crud3.png)
+
+asynchronous
+
+--v
+
+# Eventual consistent
+
+* query will "soon" retrieve correct state
+* ACID &rarr; BASE
+* we no longer benefit from having the same read/write model
+
+--->
+
+# CQRS
+
+--v
 
 ## Command
 ## Query
-Responsibility Segregation
-<br/>
-## Event
-Sourcing
+### Responsibility
+### Segregation
 
----
+--v
+<!-- .slide: data-background="./img/data-flow.svg" height="100%" -->
+
+.
+--v
 
 # Command
 
---
+* expresses and Intent that something should happen in the future
+* has an imperative name (CreateOrder)
+* can fail
+* modifies the state
+* triggers events
 
-### Commands
-
-* drücken einen `Intent` aus
-* sind in die Zukunft gerichtet
-* Verändern das System (`write`)
-* werden als Imperativ formuliert (`CreateCustomer`)
-
---
-
-### Command handler
-
-* verarbeiten `Commands`
-* können die Bearbeitung abweisen (wenn Zustand es nicht erlaubt) 
-* liefern kein Ergebnis
-
----
-
-# Query
-
---
-
-### Queries
-
-* beschreiben lesende Zugriffe auf das System (`find`, `get`)
-* verändern niemals den Zustand des Systems
-
---
-
-### Query handler
-
-* liefern Antworten auf typisierte Fragen
-* erlauben Subskription auf Änderungen der Antwort
-
----
+--v
 
 # Event
 
---
- 
-### (Domain) Events
+* expresses somthing that happened in the past
+* has a participe name (OrderCreated)
+* is an immutable fact
+* can not fail
 
-* unveränderliche Fakten, liegen in der Vergangenheit
-* Beschreiben Ereignisse, die in der Domaine passiert sind
-* werden als Partizip formuliert (`CustomerCreated`)
-* sind die "single point of truth" Persistenz des Systems
-
---
-
-### Event handler
-
-* Erzeugen materialisierte Sichten (Projektion) aus dem Strom der Ereignisse
-* können Commands auslösen
-
----
-
-# CQRS/ES !
-
---
-
-<p class="stretch"><img src="https://docs.wolkenkit.io/data-flow/data-flow.svg"></p>
-
----
+--->
 
 # Event Sourcing
 
 > Event Sourcing ensures that all changes to application state are stored as a sequence of events.
 >> Martin Fowler
 
---
+--v
 
-### Append-only Store
+### Event Store
 
-* optmiert für schnelles Schreiben
-* lock-free
-* einfach verteilbar
+* append only, lock-free
+* optimized for quick write
+* easy to distribute
+* single point of truth
+* can be used to (re-)create State
 
---
+--v
 
 ### Event Sourcing
 
-* Verwenden historischer Events für neue Anforderungen
-* Debug/Fehlerananylse durch Replay von/bis
-* Audit Log for free
+![](img/active-record-es.png)
 
----
+--v
+
+## Benefits
+
+* multiple Read models (Projection) with dedicated purpose
+* audit log for free
+* analyse/debug State by replaying selected events
+* correct errors with compensation events
+
+--->
+
+### System Overview
+
+![](img/cqrs-system.png)
+
+--->
 
 # "Demo"
 
 * create a deployment
 
---
+--v
 
 ![1](img/cqrs1.png)
 
---
+--v
 
 ![2](img/cqrs2.png)
 
---
+--v
 
 ![3](img/cqrs3.png)
 
---
+--v
 
 ![4](img/cqrs4.png)
 
---
+--v
 
 ![5](img/cqrs5.png)
 
---
+--v
 
 ![6](img/cqrs6.png)
 
---
+--v
 
 ![7](img/cqrs7.png)
 
 
----
-
-
-## Links
-
-* [Heise - CQRS neues Architekturprinzip zur Trennung von Befehlen und Abfragen](https://www.heise.de/developer/artikel/CQRS-neues-Architekturprinzip-zur-Trennung-von-Befehlen-und-Abfragen-1797489.html)
-
----
+--->
 
 # `exit(0)`
 
---
-
-![CQRS Overview](https://heise.cloudimg.io/width/610/q80.png-lossy-80.webp-lossy-80.foil1/_www-heise-de_/developer/imgs/06/9/7/9/0/2/0/abb2-8f91b55dc4f69adb.png)
-
----
