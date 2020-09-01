@@ -1,0 +1,9 @@
+version: '3'
+services:
+  reveal:
+    image: webpronl/reveal-md:latest
+    ports:
+      - "1948:1948"
+    volumes:
+      - .:/slides
+
